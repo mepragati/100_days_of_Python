@@ -48,12 +48,13 @@ def process_coins():
     return total
 
 def is_transaction_successful(money_recieved, drink_cost):
-    if money_recieved > drink_cost:
+    if money_recieved >= drink_cost:
         change = money_recieved - drink_cost
         print(f"Here is your ₹{change} in change.")
         global profit
         profit+=drink_cost
         return True
+
     else:
         print(f"Sorry, It's ₹{money_recieved}.That's not enough money. Money refunded.")
         return False
@@ -65,7 +66,7 @@ def make_coffee(drink_name,order_ingredients):
 
 is_on = True
 while is_on :
-    choice = input("\nWhat would you like? (espresso/latte/cappuccino): ")
+    choice = input("\nWhat would you like? (espresso (₹15) / latte (₹25) / cappuccino (₹30) ): ")
     if choice == "off":
         is_on =False
     elif choice == "report":
