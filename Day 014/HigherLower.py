@@ -16,8 +16,7 @@ while ans_is_correct :
   print(f"Against B: {data_2['name']}, a {data_2['description']}, from {data_2['country']}.")
 
   compared_result = 'A' if data_1['follower_count'] > data_2['follower_count'] else 'B'
-  print(compared_result)
-  user_input = input("\nWho has more followers? Type 'A' or 'B': ")
+  user_input = input("\nWho has more followers? Type 'A' or 'B': ").upper()
 
   if compared_result == user_input :
     score+=1
