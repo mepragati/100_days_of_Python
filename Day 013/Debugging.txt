@@ -1,0 +1,14 @@
+Ways to debug is:
+1. Describe a Problem
+2. Reproduce a Bug
+3. Play Computer
+4. Fix the Errors
+5. Print is your friend
+6. Use a online debugger
+7. Take a break
+8. Ask a Friend
+9. Run Often
+10. Ask or Search Stack Overflow
+
+
+Online Debugger : http://www.pythontutor.com/visualize.html#mode=edit
