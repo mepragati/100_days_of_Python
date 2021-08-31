@@ -1,6 +1,5 @@
-#trying to run colorgram in VS Code
 import colorgram
 
-colors = colorgram.extract("dotpainting.jpg", 84) 
+colors = colorgram.extract('dotpainting.jpg',4) 
 
 print(colors)
