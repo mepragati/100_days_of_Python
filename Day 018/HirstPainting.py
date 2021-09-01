@@ -1,5 +1,8 @@
 import colorgram
 
-colors = colorgram.extract('dotpainting.jpg',4) 
+rgb_colors = []
+colors = colorgram.extract('image.jpg',3)
+for color in colors:
+    rgb_colors.append(color.rgb)
 
-print(colors)
+print(rgb_colors)
