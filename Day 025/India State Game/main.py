@@ -25,10 +25,13 @@ while len(correct_guess_list) < 29:
     all_states = data.state.to_list()
 
     if answer_state == "Exit":
-        missing_state = []
-        for state in all_states:
-            if state not in correct_guess_list:
-                missing_state.append(state)
+        # missing_state = []
+        # for state in all_states:
+        #     if state not in correct_guess_list:
+        #         missing_state.append(state)
+
+        missing_state = [state for state in all_states if state not in correct_guess_list]
+        
         new_data = pandas.DataFrame(missing_state)
         new_data.to_csv("Day 025\India State Game\states_to_learn.csv")
         break
