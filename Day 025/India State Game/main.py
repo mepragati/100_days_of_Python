@@ -45,4 +45,3 @@ while len(correct_guess_list) < 29:
         loc.write(answer_state)
         # loc.write(state_data.state.item())
         count+=1
-

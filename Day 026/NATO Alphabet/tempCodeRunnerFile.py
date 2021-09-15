@@ -1,0 +1,1 @@
+nato_dict = {letter:code for (letter,code) in }
