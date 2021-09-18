@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -25,9 +26,15 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    website_entered = input_website.get()
+    website_entered = input_website.get().title()
     email_entered = input_email.get()
     password_entered = input_password.get()
+    new_data = {
+        website_entered:{
+        "email":email_entered,
+        "password":password_entered
+        }
+    }  
 
     if len(website_entered) == 0 or len(password_entered) == 0:
         messagebox.showinfo(title="Oops", message = "Please don't leave any fields empty!")
@@ -35,20 +42,28 @@ def save():
         is_ok = messagebox.askokcancel(title=website_entered , message = f"These are the details entered: \n Email: {email_entered}\n Password: {password_entered} \n Is it ok to save?")
 
         if is_ok:
-            with open("Day 029\password-manager\data.txt", "a") as file:
-                file.write(f"{website_entered} | {email_entered} | {password_entered}\n")
+            with open("Day 029-030\password-manager\data.json", "r") as file:
+                #Reading Data
+                data = json.load(file)
+                #Updating the data
+                data.update(new_data)
+
+            with open("Day 029-030\password-manager\data.json", "w") as file:
+                #Saving updated data
+                json.dump(data,file,indent=4)
+
                 input_password.delete(0,END)
                 input_website.delete(0,END)
 
 
-
+ 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
 window.config(padx=50,pady=50)
 
 canvas = Canvas(width=200, height=200)
-my_pass_img = PhotoImage(file="Day 029\\password-manager\\logo.png")
+my_pass_img = PhotoImage(file="Day 029-030\\password-manager\\logo.png")
 canvas.create_image(100,100,image=my_pass_img)
 canvas.grid(column=1,row=0)
 
