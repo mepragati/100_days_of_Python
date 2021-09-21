@@ -5,15 +5,22 @@ import random
 BACKGROUND_COLOR = "#B1DDC6"
 FONT_NAME = "Arial"
 
-#-------------------Adding Functionalities-------------------#
-
-data_dict = pandas.read_csv("Day 031\\data\\french_words.csv").to_dict(orient="records")
 current_card = {}
+to_learn = {}
+
+#-------------------Adding Functionalities-------------------#
+try:
+    data =pandas.read_csv("Day 031\data\words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pandas.read_csv("Day 031\\data\\french_words.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
 
 def next_card():
     global current_card,flip_timer
     window.after_cancel(flip_timer)
-    current_card = random.choice(data_dict)
+    current_card = random.choice(to_learn)
     canvas.itemconfig(title_card,text = "French",fill="black")
     canvas.itemconfig(word_card,text=current_card["French"],fill="black")
     canvas.itemconfig(canvas_image,image=my_card_img_front)
@@ -25,9 +32,9 @@ def flip_card():
     canvas.itemconfig(word_card,text=current_card["English"],fill="white")
 
 def is_known():
-    data_dict.remove(current_card)
-    data=pandas.DataFrame(data_dict)
-    data.to_csv("Day 031\data\words_to_learn.csv")
+    to_learn.remove(current_card)
+    data=pandas.DataFrame(to_learn)
+    data.to_csv("Day 031\data\words_to_learn.csv",index=False)
     next_card()
 
 
